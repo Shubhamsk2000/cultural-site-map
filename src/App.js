@@ -1,23 +1,44 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import SVGComponent from './component/SVGComponent'; 
+
+const culturalSites = {
+  'Jammu_and_Kashmir_disp': [
+    { name: 'Site A', cx: 150, cy: 200 },
+    { name: 'Site B', cx: 180, cy: 250 },
+    { name: 'Site C', cx: 200, cy: 220 },
+  ],
+
+};
 
 function App() {
+  const [selectedState, setSelectedState] = useState(null);
+
+  const handleStateClick = (e) => {
+    setSelectedState(e);
+  };
+
+  const handleCloseClick = () => {
+    setSelectedState(null);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className={`map-container ${selectedState ? 'blur' : ''}`}>
+        <SVGComponent handleStateClick={handleStateClick} selectedState={selectedState} culturalSites={culturalSites} />
+      </div>
+      {selectedState && (
+        <div className="cultural-sites-overlay">
+          <button onClick={handleCloseClick}>Close</button>
+          <h2>Cultural Sites in {selectedState.replace('_disp', '').replace(/_/g, ' ')}</h2>
+          <img src='/ssssss.png' alt='im'/>
+          <ul>
+            {culturalSites[selectedState].map((site, index) => (
+              <li key={index}>{site.name}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

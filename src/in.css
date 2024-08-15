@@ -1,0 +1,33 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.selected{
+    fill: orange;
+}
+svg{
+    border: 2px solid red;
+    position: relative;
+}
+.map-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.cultural-sites-overlay {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 20;
+    max-width: 80vw;
+    max-height: 80vh;
+    overflow: auto;
+}
